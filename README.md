@@ -17,7 +17,7 @@ The combat system of NONAME revolves around keystrokes. Players must input a set
 
 In NONAME, users will be able to:
 1. Use the arrow keys to move around a grid-like map that will update when the player reaches the border.
-2. Interact with an grid-like inventory to use and view items within.
+2. Interact with a grid-like inventory to use and view items within.
 3. Interact with objects placed in the map to add new items into their inventory or enter combat with an enemy object.
 4. When in combat, enter keystrokes matching the ones required to successfully attack enemies or defend from enemy attacks.
 
