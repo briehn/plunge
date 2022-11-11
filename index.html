@@ -6,12 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
-    <script src="./dist/main.js"></script>
+    <script src="./dist/main.js" defer></script>
     <title>NONAME</title>
   </head>
 
   <body>
-      <div id="main"></div>
+    <div class="main">
+      <section class="instructions-section">
+          <p id="instructionsTag">Instructions</p>
+      </section>
+      <section class="center-section">
+        <img id="logo" src="additional_assets/logo.png">
+        <canvas id="center"></canvas>
+      </section>
+      <section class="inventory-section">
+        <p id="inventoryTag">Inventory</p>
+      </section>
+    </div>
   </body>
 
 </html>
