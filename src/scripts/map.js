@@ -241,6 +241,16 @@ class Map {
         }
     }
 
+    /*
+            0
+           000
+          00000
+        0000P0000  p => focus point
+          00000 
+           000
+            0
+    */
+
     withinBoundaries(currentItem, locations, dx, dy) {
         let within = false;
         let cI = currentItem.i
