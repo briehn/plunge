@@ -1,4 +1,5 @@
 import Map from "./map.js";
+import Player from "./player.js"
 
 class Game {
     constructor(ctx) {
@@ -6,16 +7,16 @@ class Game {
     }
 
     render() {
+        const height = this.ctx.canvas.height;
+        const width = this.ctx.canvas.width;
         this.ctx.fillStyle = "black";
         this.ctx.strokeStyle = "black";
-        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        this.ctx.fillRect(0, 0, width, height);
         this.ctx.stroke();
         
         const map = new Map(this.ctx);
         map.createGrid();
         map.generateMap();
-
-        
     }
 }
 

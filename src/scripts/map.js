@@ -1,3 +1,5 @@
+import Player from "./player.js"
+
 class Map {
     constructor(ctx) {
         this.ctx = ctx;
@@ -7,6 +9,12 @@ class Map {
         this.cols = 32;
         this.grid = new Array(this.rows * this.cols).fill(0);
 
+        //used for isChest
+        this.chestAvailable = true; //obvious
+        this.lastChest = 0; //last chest index
+        this.currentChestCount = 0;
+        this.maxChestCount = 12;
+
         //pulling from local json file that contains data of tile location/name
         this.data = require('../assets/tileSheetData.json').meta.slices;
     }
@@ -14,17 +22,23 @@ class Map {
     generateMap() {
         const tileSheet = new Image();
         tileSheet.src = "./src/assets/tileSheet.png";
+        const height = this.ctx.canvas.height;
+        const width = this.ctx.canvas.width;
 
         tileSheet.onload = () => {
+            const tileSize = 16;
             const wall = this.data[55];
             const wallX = wall.keys[0].bounds["x"];
             const wallY = wall.keys[0].bounds["y"];
-            const wallSize = 16;
 
             const floor = this.data[48]
             const floorX = floor.keys[0].bounds["x"];
             const floorY = floor.keys[0].bounds["y"];
-            const floorSize = 16;
+
+            
+            const chest = this.data[41]
+            const chestX = chest.keys[0].bounds["x"];
+            const chestY = chest.keys[0].bounds["y"];
 
             /*
             drawImage(
@@ -44,13 +58,50 @@ class Map {
             for (let y = 0; y < this.rows; y++) {
                 let i = y * this.cols + x;
                 let index = this.grid[i];
-                if (index === 7) {
-                    this.ctx.drawImage(tileSheet, wallX, wallY, wallSize, wallSize, x * wallSize, y * wallSize, wallSize, wallSize);
-                } else if (index == 0) {
-                    this.ctx.drawImage(tileSheet, floorX, floorY, floorSize, floorSize, x * floorSize, y * floorSize, floorSize, floorSize);
+                switch (index) {
+                    case 7: 
+                        this.ctx.drawImage(
+                        tileSheet, 
+                        wallX, 
+                        wallY, 
+                        tileSize, 
+                        tileSize, 
+                        x * tileSize, 
+                        y * tileSize, 
+                        tileSize, 
+                        tileSize
+                        );
+                        break;
+                    case 0: 
+                        this.ctx.drawImage(
+                        tileSheet, 
+                        floorX, 
+                        floorY, 
+                        tileSize, 
+                        tileSize, 
+                        x * tileSize, 
+                        y * tileSize, 
+                        tileSize, 
+                        tileSize
+                        );
+                        break;
+                    case 3:
+                        this.ctx.drawImage(
+                            tileSheet, 
+                            chestX, 
+                            chestY, 
+                            tileSize, 
+                            tileSize, 
+                            x * tileSize, 
+                            y * tileSize, 
+                            tileSize, 
+                            tileSize
+                        );
                 }
             }
            }
+           const player = new Player(this.ctx, width / 2, height/2)
+           player.generatePlayer();
         }
     }
 /*
@@ -79,10 +130,20 @@ class Map {
         7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7
  */
     createGrid() {
+        /*
+            7: Boundaries
+            0: Floor
+            3: Chests
+            2: Enemy
+            1: Impassable Object
+        */
         for (let i = 0; i < this.grid.length; i++) {
             if (this.isBoundary(i)) {
                 this.grid[i] = 7;
-            } else {
+            } else if (this.isChest(i)) {
+                this.grid[i] = 3;
+            } 
+            else {
                 this.grid[i] = 0;
             }
         }
@@ -90,6 +151,25 @@ class Map {
 
     isBoundary(i) {
         return (i <= this.rows || i % this.rows === 0 || (i <= this.grid.length - 1 && i > this.grid.length - this.rows) || (i + 1) % this.rows === 0);
+    }
+
+    isChest(i) {
+        if (this.checkChest(i)) {
+            debugger
+            this.lastChest = i;
+            this.currentChestCount += 1;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    checkChest(i) {
+        //must fix random generation
+        return this.chestAvailable && 
+        this.currentChestCount < this.maxChestCount &&
+        (Math.random() > .5) &&
+        i - this.lastChest > 64
     }
 }
 
