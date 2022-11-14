@@ -220,7 +220,7 @@ class Map {
             return this.currentPotionCount < this.maxPotionCount && (Math.random() > .6);
         } else {
             return this.currentPotionCount < this.maxPotionCount && (Math.random() > .6)
-            && !this.withinBoundaries({x: x, y: y, i: i}, this.potionLocations, 10, 6)
+            && !this.withinBoundaries({x: x, y: y, i: i}, this.potionLocations, 10,10)
         }
     }
 
@@ -237,7 +237,7 @@ class Map {
         } else {
             return this.currentChestCount < this.maxChestCount
             && (Math.random() > .7)
-            && !this.withinBoundaries({x: x, y: y, i: i}, this.chestLocations, 8, 5)
+            && !this.withinBoundaries({x: x, y: y, i: i}, this.chestLocations, 12, 7)
         }
     }
 

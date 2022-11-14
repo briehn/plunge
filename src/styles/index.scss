@@ -1,13 +1,12 @@
-// @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 
-// body {
-//   width: 90%;
-//   background-color: lemonchiffon;
-// }
+body {
+  background-color: lemonchiffon;
+}
 
-// .main {
-//   display: flex;
-// }
+.main {
+  display: flex;
+}
 
 // .instructions-section {
 //   height: 70vh;
@@ -43,22 +42,45 @@
 //   user-select: none; /* Standard */
 // }
 
-// #logo {
-//   width: 50%;
-//   position: relative;
-//   padding-left: 0;
-//   padding-right: 0;
-//   margin-left: auto;
-//   margin-right: auto;
-//   display: block;
-// }
+.instructions-section {
+    margin-left: 5%;
+    width: 300px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.479);
+    font-weight: bold;
+    font-size: 36px;
+    font-family: Montserrat;
+    user-select: none; /* Standard */
+}
 
-// #center {
-//   // width: 600px;
-//   // height: 600px;
-//   padding-left: 0;
-//   padding-right: 0;
-//   margin-left: auto;
-//   margin-right: auto;
-//   display: block;
-// }
+.inventory-section {
+    margin-right: 5%;
+    width: 300px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.479);    
+    font-weight: bold;
+    font-size: 36px;
+    font-family: Montserrat;
+    user-select: none; /* Standard */
+}
+
+.logo-class {
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  width: 20%;
+}
+
+.center-section {
+    width: 512px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
