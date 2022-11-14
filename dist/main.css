@@ -15,11 +15,11 @@ body {
 }
 
 .instructions-section {
-  height: 700px;
-  width: 400px;
+  height: 70vh;
+  width: 50vh;
   position: relative;
-  top: 175px;
-  left: 25px;
+  margin-left: 3%;
+  margin-top: 10%;
   border: 3px solid black;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.479);
@@ -49,14 +49,19 @@ body {
 #logo {
   width: 50%;
   position: relative;
-  left: 350px;
-  top: 50px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 #center {
-  position: absolute;
-  top: 250px;
-  left: 650px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 

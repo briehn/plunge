@@ -1,59 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 
 body {
-    width: 90%;
-    background-color:lemonchiffon;
+  width: 90%;
+  background-color: lemonchiffon;
 }
 
 .main {
-    display: flex;
+  display: flex;
 }
 
 .instructions-section {
-    height: 700px;
-    width: 400px;
-    position: relative;
-    top: 175px;
-    left: 25px;
-    border: 3px solid black;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.479);
+  height: 70vh;
+  width: 50vh;
+  position: relative;
+  margin-left: 3%;
+  margin-top: 10%;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.479);
 
-    text-align: center;
-    font-weight: bold;
-    font-size: 48px;
-    font-family: Montserrat;
-    user-select: none; /* Standard */
+  text-align: center;
+  font-weight: bold;
+  font-size: 48px;
+  font-family: Montserrat;
+  user-select: none; /* Standard */
 }
 
 .inventory-section {
-    height: 500px;
-    width: 400px;
-    position: relative;
-    top: 300px;
-    left: 275px;
-    border: 3px solid black;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.479);
+  height: 500px;
+  width: 400px;
+  position: relative;
+  top: 300px;
+  left: 275px;
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.479);
 
-    text-align: center;
-    font-weight: bold;
-    font-size: 48px;
-    font-family: Montserrat;
-    user-select: none; /* Standard */
+  text-align: center;
+  font-weight: bold;
+  font-size: 48px;
+  font-family: Montserrat;
+  user-select: none; /* Standard */
 }
 
 #logo {
-    width: 50%;
-    position:relative;
-    left: 350px;
-    top: 50px;
+  width: 50%;
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 #center {
-    // width: 600px;
-    // height: 600px;
-    position: absolute;
-    top: 250px;
-    left: 650px;
+  // width: 600px;
+  // height: 600px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }

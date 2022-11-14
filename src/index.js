@@ -12,18 +12,16 @@ import Game from "./scripts/game";
 const game = new Game("main");
 const canvas = document.getElementById("center");
 const ctx = canvas.getContext("2d");
-canvas.width = 600;
-canvas.height = 600;
-
+canvas.width = 400;
+canvas.height = 400;
 
 const playerImage = new Image();
-playerImage.src = './assets/player.png'
+playerImage.src = "./assets/player.png";
 
-ctx.fillStyle = 'black';
+ctx.fillStyle = "black";
 ctx.strokeStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.stroke();
-
 
 // PLAYER MODEL CODE DISABLE UNTIL MAP IS RENDERED
 // class Sprite {
@@ -61,7 +59,7 @@ ctx.stroke();
 // }
 
 // function animate() {
-//     window.requestAnimationFrame(animate)    
+//     window.requestAnimationFrame(animate)
 // }
 // animate();
 
@@ -102,4 +100,3 @@ ctx.stroke();
     map and combat will be one canvas
     https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Optimizing_canvas
 */
-
