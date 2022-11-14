@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
+body {
+  background-color: lemonchiffon;
+}
+
+.main {
+  display: flex;
+}
+
+// .instructions-section {
+//   height: 70vh;
+//   width: 50vh;
+//   position: relative;
+//   margin-left: 3%;
+//   margin-top: 10%;
+//   border: 3px solid black;
+//   border-radius: 10px;
+//   background-color: rgba(255, 255, 255, 0.479);
+
+//   text-align: center;
+//   font-weight: bold;
+//   font-size: 48px;
+//   font-family: Montserrat;
+//   user-select: none; /* Standard */
+// }
+
+// .inventory-section {
+//   height: 500px;
+//   width: 400px;
+//   position: relative;
+//   top: 300px;
+//   left: 275px;
+//   border: 3px solid black;
+//   border-radius: 10px;
+//   background-color: rgba(255, 255, 255, 0.479);
+
+//   text-align: center;
+//   font-weight: bold;
+//   font-size: 48px;
+//   font-family: Montserrat;
+//   user-select: none; /* Standard */
+// }
+
+.instructions-section {
+    margin-left: 5%;
+    width: 300px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.479);
+    font-weight: bold;
+    font-size: 36px;
+    font-family: Montserrat;
+    user-select: none; /* Standard */
+}
+
+.inventory-section {
+    margin-right: 5%;
+    width: 300px;
+    text-align: center;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.479);    
+    font-weight: bold;
+    font-size: 36px;
+    font-family: Montserrat;
+    user-select: none; /* Standard */
+}
+
+.logo-class {
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  width: 20%;
+}
+
+.center-section {
+    width: 512px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
