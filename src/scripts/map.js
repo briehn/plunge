@@ -1,19 +1,27 @@
 import Player from "./player.js"
 
 class Map {
-    constructor(ctx) {
+    constructor(ctx, game) {
         this.ctx = ctx;
+        this.game = game;
 
         //setting grid info
         this.rows = 32;
         this.cols = 32;
+        this.tsize = 16;
         this.grid = new Array(this.rows * this.cols).fill(0);
 
         //used for isChest
         this.chestAvailable = true; //obvious
-        this.lastChest = 0; //last chest index
+        this.chestLocations = {};
         this.currentChestCount = 0;
         this.maxChestCount = 12;
+
+        //used for potions
+        this.potionAvailable = true;
+        this.lastPotion = {};
+        this.currentPotionCount = 0;
+        this.maxPotionCount = 12;
 
         //pulling from local json file that contains data of tile location/name
         this.data = require('../assets/tileSheetData.json').meta.slices;
@@ -60,6 +68,7 @@ class Map {
                 let index = this.grid[i];
                 switch (index) {
                     case 7: 
+                    // debugger
                         this.ctx.drawImage(
                         tileSheet, 
                         wallX, 
@@ -100,8 +109,7 @@ class Map {
                 }
             }
            }
-           const player = new Player(this.ctx, width / 2, height/2)
-           player.generatePlayer();
+           this.game.player.generatePlayer();
         }
     }
 /*
@@ -133,18 +141,24 @@ class Map {
         /*
             7: Boundaries
             0: Floor
+            4: Potions
             3: Chests
             2: Enemy
             1: Impassable Object
         */
-        for (let i = 0; i < this.grid.length; i++) {
-            if (this.isBoundary(i)) {
-                this.grid[i] = 7;
-            } else if (this.isChest(i)) {
-                this.grid[i] = 3;
-            } 
-            else {
-                this.grid[i] = 0;
+        for (let x = 0; x < this.cols; x++) {
+            for (let y = 0; y < this.rows; y++) {
+                let i = y * this.cols + x;    
+                if (this.isBoundary(i)) {
+                    this.grid[i] = 7;
+                } else if (this.isChest(x, y, i)) {
+                    this.grid[i] = 3;
+                } else if (this.isPotion(x,y,i)) {
+                    this.grid[i] = 4;
+                }
+                else {
+                    this.grid[i] = 0;
+                }
             }
         }
     }
@@ -153,24 +167,65 @@ class Map {
         return (i <= this.rows || i % this.rows === 0 || (i <= this.grid.length - 1 && i > this.grid.length - this.rows) || (i + 1) % this.rows === 0);
     }
 
-    isChest(i) {
-        if (this.checkChest(i)) {
-            debugger
-            this.lastChest = i;
+    isChest(x, y, i) {
+        if (this.checkChest(x, y, i)) {
+            this.chestLocations[this.currentChestCount] = {
+                x: x,
+                y: y,
+                i, i
+            }
             this.currentChestCount += 1;
+            // console.log(Object.values(this.chestLocations))
+            // console.log(this.chestLocations)
+        Object.values(this.chestLocations).forEach((x) => {
+            console.log(x.i);
+        })
             return true;
         } else {
             return false;
         }
     }
 
-    checkChest(i) {
-        //must fix random generation
-        return this.chestAvailable && 
-        this.currentChestCount < this.maxChestCount &&
-        (Math.random() > .5) &&
-        i - this.lastChest > 64
+    isPotion(x, y, i) {
+        if (Object.keys(this.lastPotion).length === 0) {
+            this.lastPotion["x"] = x;
+            this.lastPotion["y"] = y;
+            this.lastPotion["i"] = i;
+        }
+
     }
+
+    checkChest(x, y, i) {
+        /* 
+            must fix random generation
+            check for player spawn location
+            why no top right?
+            very left side heavy
+        */
+        if (Object.keys(this.chestLocations).length === 0) {
+            return this.chestAvailable && 
+            this.currentChestCount < this.maxChestCount &&
+            (Math.random() > .7)
+        } else {
+            return this.chestAvailable && 
+            this.currentChestCount < this.maxChestCount && (Math.random() > .7)
+            && (Math.random() > .7)
+            && !this.withinBoundaries({x: x, y: y, i: i})
+        }
+    }
+
+    withinBoundaries(currentChest) {
+        let within = false;
+        let cI = currentChest.i
+        Object.values(this.chestLocations).forEach((coords) => {
+            let focus = coords.i
+            if (cI > ((focus - (this.rows * 2)) - 3) && cI < ((focus + (this.rows * 2)) + 3)) {
+                within = true;
+            }
+        })
+        return within;
+    }
+
 }
 
 export default Map;

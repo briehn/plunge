@@ -1,10 +1,13 @@
 class Player {
-    constructor(ctx, x, y) {
+    constructor(map, ctx, x, y) {
+        this.map = map;
         this.ctx = ctx;
         this.x = x;
         this.y = y;
         this.player = require('../assets/tileSheetData.json').meta.slices[150];
+        Player.SPEED = 16;
     }
+
 
     generatePlayer() {
         // const wall = this.data[55];
@@ -31,6 +34,17 @@ class Player {
                 playerSize
                 );
         }
+    }
+
+    move(dirx, diry) {
+        this.x += dirx * Player.SPEED;
+        this.y += diry * Player.SPEED;
+
+        var maxX = this.map.cols * this.map.tsize;
+        var maxY = this.map.rows * this.map.tsize;
+        this.x = Math.max(0, Math.min(this.x, maxX));
+        this.y = Math.max(0, Math.min(this.y, maxY));
+        
     }
 }
 
