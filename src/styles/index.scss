@@ -52,3 +52,10 @@ body {
   margin: 0 auto;
   padding: 0 1em;
 }
+
+.inventory {
+  list-style: none;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}

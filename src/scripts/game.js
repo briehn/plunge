@@ -1,6 +1,7 @@
 import Map from "./map.js";
 import Player from "./player.js";
 import KeyListener from "./keyListener.js";
+import Inventory from "./inventory.js";
 
 class Game {
   constructor(ctx) {
@@ -12,6 +13,7 @@ class Game {
       this.ctx.canvas.width / 2,
       this.ctx.canvas.height / 2
     );
+    this.playerInventory = new Inventory();
     this._previousElaped = 0;
     this.initialRender = false;
   }

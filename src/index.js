@@ -1,4 +1,6 @@
 import Game from "./scripts/game.js";
+import Item from "./scripts/item.js";
+import Inventory from "./scripts/inventory.js";
 
 /* 
     ROADMAP:
@@ -21,6 +23,27 @@ function animate() {
   game.tick();
 }
 animate();
+
+const item2 = {
+  name: "Red Potion",
+  src: "./src/assets/items/flask_big_red.png",
+};
+const item3 = {
+  name: "Green Potion",
+  src: "./src/assets/items/flask_big_green.png",
+};
+const item4 = {
+  name: "Blue Potion",
+  src: "./src/assets/items/flask_big_blue.png",
+};
+const item5 = {
+  name: "Steel Sword",
+  src: "./src/assets/items/weapon_sword_steel.png",
+};
+game.playerInventory.addItem(item2, 2);
+game.playerInventory.addItem(item3, 1);
+game.playerInventory.addItem(item4, 3);
+game.playerInventory.addItem(item5, 1);
 
 /*  
     map and combat will be one canvas
