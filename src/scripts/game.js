@@ -12,7 +12,10 @@ class Game {
         this.ctx.stroke();
         
         const map = new Map(this.ctx);
+        map.createGrid();
         map.generateMap();
+
+        
     }
 }
 
