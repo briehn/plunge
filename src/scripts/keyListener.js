@@ -1,46 +1,66 @@
-export const KEYS = {
-    up: {
-        pressed: false
-    },
-    down: {
-        pressed: false
-    },
-    left: {
-        pressed: false
-    },
-    right: {
-        pressed: false
-    }
-}
-window.addEventListener('keydown', (e) => {
+const KeyListener = {};
+KeyListener.listen = function () {
+  window.addEventListener("keydown", (e) => {
     switch (e.key) {
-        case "ArrowUp":
-            KEYS.up.pressed = true;
+      case "ArrowUp":
+        e.preventDefault();
+        this.KEYS["up"].pressed = true;
         break;
-        case "ArrowDown":
-            KEYS.down.pressed = true;
+      case "ArrowDown":
+        e.preventDefault();
+        this.KEYS["down"].pressed = true;
         break;
-        case "ArrowLeft":
-            KEYS.left.pressed = true;
+      case "ArrowLeft":
+        e.preventDefault();
+        this.KEYS["left"].pressed = true;
         break;
-        case "ArrowRight":
-            KEYS.right.pressed = true;
+      case "ArrowRight":
+        e.preventDefault();
+        this.KEYS["right"].pressed = true;
         break;
     }
-})
-window.addEventListener('keyup', (e) => {
+  });
+
+  window.addEventListener("keyup", (e) => {
     switch (e.key) {
-        case "ArrowUp":
-            KEYS.up.pressed = false;
+      case "ArrowUp":
+        e.preventDefault();
+        this.KEYS["up"].pressed = false;
         break;
-        case "ArrowDown":
-            KEYS.down.pressed = false;
+      case "ArrowDown":
+        e.preventDefault();
+        this.KEYS["down"].pressed = false;
         break;
-        case "ArrowLeft":
-            KEYS.left.pressed = false;
+      case "ArrowLeft":
+        e.preventDefault();
+        this.KEYS["left"].pressed = false;
         break;
-        case "ArrowRight":
-            KEYS.right.pressed = false;
+      case "ArrowRight":
+        e.preventDefault();
+        this.KEYS["right"].pressed = false;
         break;
     }
-})
+  });
+};
+
+KeyListener.isDown = function (key) {
+  //   console.log(this.KEYS);
+  return this.KEYS[key].pressed;
+};
+
+KeyListener.KEYS = {
+  up: {
+    pressed: false,
+  },
+  down: {
+    pressed: false,
+  },
+  left: {
+    pressed: false,
+  },
+  right: {
+    pressed: false,
+  },
+};
+
+export default KeyListener;

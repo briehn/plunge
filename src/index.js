@@ -16,12 +16,11 @@ canvas.height = 512;
 const game = new Game(ctx);
 game.render();
 
-
-// function animate() {
-//     window.requestAnimationFrame(animate);
-//     game.tick();
-// }
-// animate();
+function animate() {
+  window.requestAnimationFrame(animate);
+  game.tick();
+}
+animate();
 
 /*  
     map and combat will be one canvas
