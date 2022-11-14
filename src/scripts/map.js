@@ -12,14 +12,12 @@ class Map {
         this.grid = new Array(this.rows * this.cols).fill(0);
 
         //used for isChest
-        this.chestAvailable = true; //obvious
         this.chestLocations = {};
         this.currentChestCount = 0;
         this.maxChestCount = 12;
 
         //used for potions
-        this.potionAvailable = true;
-        this.lastPotion = {};
+        this.potionLocations = {};
         this.currentPotionCount = 0;
         this.maxPotionCount = 12;
 
@@ -32,21 +30,27 @@ class Map {
         tileSheet.src = "./src/assets/tileSheet.png";
         const height = this.ctx.canvas.height;
         const width = this.ctx.canvas.width;
-
+        this.ctx.imageSmoothingEnabled = false;
         tileSheet.onload = () => {
             const tileSize = 16;
             const wall = this.data[55];
             const wallX = wall.keys[0].bounds["x"];
             const wallY = wall.keys[0].bounds["y"];
 
-            const floor = this.data[48]
+            const floor = this.data[48];
             const floorX = floor.keys[0].bounds["x"];
             const floorY = floor.keys[0].bounds["y"];
 
             
-            const chest = this.data[41]
+            const chest = this.data[41];
             const chestX = chest.keys[0].bounds["x"];
             const chestY = chest.keys[0].bounds["y"];
+
+            const potion = this.data[29];
+            const potionX = potion.keys[0].bounds["x"];
+            const potionY = potion.keys[0].bounds["y"];
+            const potionW = potion.keys[0].bounds["w"];
+            const potionH = potion.keys[0].bounds["h"]
 
             /*
             drawImage(
@@ -106,6 +110,21 @@ class Map {
                             tileSize, 
                             tileSize
                         );
+                        break;
+                    case 4:
+                        this.ctx.drawImage(
+                            tileSheet, 
+                            potionX, 
+                            potionY, 
+                            potionW, 
+                            potionH, 
+                            x * tileSize, 
+                            y * tileSize, 
+                            tileSize, 
+                            tileSize
+                        );
+                        break;
+
                 }
             }
            }
@@ -153,8 +172,11 @@ class Map {
                     this.grid[i] = 7;
                 } else if (this.isChest(x, y, i)) {
                     this.grid[i] = 3;
+                    this.currentChestCount += 1;
                 } else if (this.isPotion(x,y,i)) {
                     this.grid[i] = 4;
+                    this.currentPotionCount += 1;
+                    // console.log(this.potionLocations)
                 }
                 else {
                     this.grid[i] = 0;
@@ -172,14 +194,8 @@ class Map {
             this.chestLocations[this.currentChestCount] = {
                 x: x,
                 y: y,
-                i, i
+                i: i
             }
-            this.currentChestCount += 1;
-            // console.log(Object.values(this.chestLocations))
-            // console.log(this.chestLocations)
-        Object.values(this.chestLocations).forEach((x) => {
-            console.log(x.i);
-        })
             return true;
         } else {
             return false;
@@ -187,12 +203,25 @@ class Map {
     }
 
     isPotion(x, y, i) {
-        if (Object.keys(this.lastPotion).length === 0) {
-            this.lastPotion["x"] = x;
-            this.lastPotion["y"] = y;
-            this.lastPotion["i"] = i;
+        if (this.checkPotion(x, y, i)) {
+            this.potionLocations[this.currentPotionCount] = {
+                x: x,
+                y: y,
+                i: i
+            }
+            return true;
+        } else {
+            return false;
         }
+    }
 
+    checkPotion(x, y, i) {
+        if (Object.keys(this.potionLocations).length === 0) {
+            return this.currentPotionCount < this.maxPotionCount && (Math.random() > .6);
+        } else {
+            return this.currentPotionCount < this.maxPotionCount && (Math.random() > .6)
+            && !this.withinBoundaries({x: x, y: y, i: i}, this.potionLocations, 10, 6)
+        }
     }
 
     checkChest(x, y, i) {
@@ -203,24 +232,27 @@ class Map {
             very left side heavy
         */
         if (Object.keys(this.chestLocations).length === 0) {
-            return this.chestAvailable && 
-            this.currentChestCount < this.maxChestCount &&
-            (Math.random() > .7)
-        } else {
-            return this.chestAvailable && 
-            this.currentChestCount < this.maxChestCount && (Math.random() > .7)
+            return this.currentChestCount < this.maxChestCount 
             && (Math.random() > .7)
-            && !this.withinBoundaries({x: x, y: y, i: i})
+        } else {
+            return this.currentChestCount < this.maxChestCount
+            && (Math.random() > .7)
+            && !this.withinBoundaries({x: x, y: y, i: i}, this.chestLocations, 8, 5)
         }
     }
 
-    withinBoundaries(currentChest) {
+    withinBoundaries(currentItem, locations, dx, dy) {
         let within = false;
-        let cI = currentChest.i
-        Object.values(this.chestLocations).forEach((coords) => {
-            let focus = coords.i
-            if (cI > ((focus - (this.rows * 2)) - 3) && cI < ((focus + (this.rows * 2)) + 3)) {
-                within = true;
+        let cI = currentItem.i
+        Object.values(locations).forEach((coords) => {
+            let focus = coords.i;
+            let lowestBound = ((focus - dx) - (this.rows * dy))
+            for (let j = 0; j < (dy * 2); j++) {
+                let leftBound = lowestBound + (j * this.rows);
+                let rightBound = leftBound + (dx * 2);
+                if (cI > leftBound && cI < rightBound) {
+                    within = true;
+                }
             }
         })
         return within;
