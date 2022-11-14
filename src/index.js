@@ -1,5 +1,4 @@
-import Example from "./scripts/example";
-import Game from "./scripts/game";
+import Game from "./scripts/game.js";
 
 /* 
     ROADMAP:
@@ -9,92 +8,13 @@ import Game from "./scripts/game";
         - Render Enemies
 */
 
-const game = new Game("main");
 const canvas = document.getElementById("center");
 const ctx = canvas.getContext("2d");
-canvas.width = 400;
-canvas.height = 400;
+canvas.width = 512;
+canvas.height = 512;
 
-const playerImage = new Image();
-playerImage.src = "./assets/player.png";
-
-ctx.fillStyle = "black";
-ctx.strokeStyle = "black";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.stroke();
-
-// PLAYER MODEL CODE DISABLE UNTIL MAP IS RENDERED
-// class Sprite {
-//     constructor(options) {
-//         this.position = options.position
-//     }
-// }
-
-// const keys = {
-//     up: {
-//         pressed: false
-//     },
-//     down: {
-//         pressed: false
-//     },
-//     left: {
-//         pressed: false
-//     },
-//     right: {
-//         pressed: false
-//     }
-// }
-// playerImage.onload = () => {
-//     ctx.drawImage(
-//         playerImage,
-//         0,
-//         0,
-//         playerImage.width / 17,
-//         playerImage.height,
-//         5,
-//         canvas.height - playerImage.height,
-//         playerImage.width / 17,
-//         playerImage.height
-//         );
-// }
-
-// function animate() {
-//     window.requestAnimationFrame(animate)
-// }
-// animate();
-
-// window.addEventListener('keydown', (e) => {
-//     switch (e.key) {
-//         case "ArrowUp":
-//             keys.up.pressed = true;
-//         break;
-//         case "ArrowDown":
-//             keys.down.pressed = true;
-//         break;
-//         case "ArrowLeft":
-//             keys.left.pressed = true;
-//         break;
-//         case "ArrowRight":
-//             keys.right.pressed = true;
-//         break;
-//     }
-// })
-// window.addEventListener('keyup', (e) => {
-//     switch (e.key) {
-//         case "ArrowUp":
-//             keys.up.pressed = false;
-//         break;
-//         case "ArrowDown":
-//             keys.down.pressed = false;
-//         break;
-//         case "ArrowLeft":
-//             keys.left.pressed = false;
-//         break;
-//         case "ArrowRight":
-//             keys.right.pressed = false;
-//         break;
-//     }
-// })
+const game = new Game(ctx);
+game.render();
 
 /*  
     map and combat will be one canvas
