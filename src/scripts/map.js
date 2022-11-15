@@ -135,7 +135,7 @@ class Map {
         }
       }
       this.isColliding(this.game.player, Blockable.BLOCKLIST);
-        this.game.player.generatePlayer();
+        // this.game.player.generatePlayer();
     };
   }
 
