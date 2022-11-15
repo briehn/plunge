@@ -1,5 +1,6 @@
 import Player from "./player.js";
 import Blockable from "./blockable.js";
+import Item from "./item.js";
 
 class Map {
   constructor(ctx, game) {
@@ -23,7 +24,7 @@ class Map {
     this.maxPotionCount = 12;
 
     //blockable list
-    this.blockades = {};
+    this.blockades = Blockable.BLOCKLIST;
 
     //pulling from local json file that contains data of tile location/name
     this.data = require("../assets/tileSheetData.json").meta.slices;
@@ -134,30 +135,56 @@ class Map {
         }
       }
       this.isColliding(this.game.player, Blockable.BLOCKLIST);
-      this.game.player.generatePlayer();
+      //   this.game.player.generatePlayer();
     };
   }
 
   isColliding(rect1, blocklist) {
     for (let i = 0; i < blocklist.length; i++) {
       let rect2 = blocklist[i];
-      //   debugger;
       if (
         // rect1.x < rect2.x + rect2.width &&
         // rect1.x + rect1.width > rect2.x &&
         // rect1.y <= rect2.y + rect2.height &&
         // rect1.height + rect1.y >= rect2.y
-        rect1.x + rect1.width >= rect2.x &&
-        rect1.x <= rect2.x + rect2.width &&
-        rect1.y <= rect2.y + rect2.height &&
-        rect1.y + rect1.height >= rect2.y
+        rect1.x + rect1.width + 5 >= rect2.trueX - rect2.x / 2 && //right of player, left of block
+        rect1.x <= rect2.trueX + rect2.width - rect2.x / 2 && //right of block, left of player
+        rect1.y <= rect2.trueY + rect2.height && //top of player, bottom of block
+        rect1.y + rect1.height >= rect2.trueY //top of block, bottom of player
       ) {
-        // debugger;
         console.log("colliding");
+        // debugger;
         this.game.player.x = this.game.player.prevX;
         this.game.player.y = this.game.player.prevY;
+        window.addEventListener("keydown", (e) => {
+          if (e.key === "e") {
+            // debugger;
+            const block = new Blockable();
+            block.remove(rect2);
+            this.pickupItem(rect2);
+          }
+        });
       }
     }
+  }
+
+  pickupItem(item) {
+    this.grid[item.i] = 0;
+    if (item.type === "chest") {
+      if (!item.pickedUp) {
+        item.pickedUp = true;
+        let reward = item.generateChestReward();
+        debugger;
+        this.game.playerInventory.addItem(reward, 1);
+      }
+    } else {
+      debugger;
+      if (!item.pickedUp) {
+        item.pickedUp = true;
+        this.game.playerInventory.addItem(item, 1);
+      }
+    }
+    this.generateMap();
   }
   /*
         EXAMPLE GRID
@@ -204,7 +231,15 @@ class Map {
           let chest = new Blockable("chest", x, y, i, 16, 16);
           Blockable.BLOCKLIST.push(chest);
         } else if (this.isPotion(x, y, i)) {
-          let potion = new Blockable("potion", x, y, i, 9, 11);
+          let potion = new Blockable(
+            "potion",
+            x,
+            y,
+            i,
+            9,
+            11,
+            "./src/assets/items/flask_big_red.png"
+          );
           Blockable.BLOCKLIST.push(potion);
           this.grid[i] = 4;
           this.currentPotionCount += 1;

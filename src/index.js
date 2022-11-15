@@ -40,10 +40,25 @@ const item5 = {
   name: "Steel Sword",
   src: "./src/assets/items/weapon_sword_steel.png",
 };
-game.playerInventory.addItem(item2, 2);
-game.playerInventory.addItem(item3, 1);
-game.playerInventory.addItem(item4, 3);
-game.playerInventory.addItem(item5, 1);
+const item6 = {
+  name: "Bomb",
+  src: "./src/assets/items/weapon_bomb.png",
+};
+const item7 = {
+  name: "Hammer",
+  src: "./src/assets/items/weapon_hammer.png",
+};
+const item8 = {
+  name: "Yellow Potion",
+  src: "./src/assets/items/flask_big_yellow.png",
+};
+// game.playerInventory.addItem(item2, 2);
+// game.playerInventory.addItem(item3, 1);
+// game.playerInventory.addItem(item4, 3);
+// game.playerInventory.addItem(item5, 1);
+// game.playerInventory.addItem(item6, 1);
+// game.playerInventory.addItem(item7, 4);
+// game.playerInventory.addItem(item8, 4);
 
 /*  
     map and combat will be one canvas
