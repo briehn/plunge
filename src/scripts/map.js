@@ -38,6 +38,7 @@ class Map {
 
     this.ctx.imageSmoothingEnabled = false;
     tileSheet.onload = () => {
+      this.game.player.generatePlayer();
       const tileSize = 16;
       const wall = this.data[55];
       const wallX = wall.keys[0].bounds["x"];
@@ -134,7 +135,6 @@ class Map {
           }
         }
       }
-      this.isColliding(this.game.player, Blockable.BLOCKLIST);
         // this.game.player.generatePlayer();
     };
   }
@@ -149,16 +149,16 @@ class Map {
         rect1.y + rect1.height >= rect2.trueY //top of block, bottom of player
       ) {
         // debugger;
-        this.game.player.x = this.game.player.prevX;
-        this.game.player.y = this.game.player.prevY;
+        console.log(rect2);
         window.addEventListener("keydown", (e) => {
           if (e.key === "e") {
             // debugger;
-            const block = new Blockable();
-            block.remove(rect2);
+            console.log(rect2);
+            rect2.remove();
             this.pickupItem(rect2);
           }
         });
+        return true;
       }
     }
   }
@@ -170,17 +170,17 @@ class Map {
       if (!item.interacted) {
         item.interacted = true;
         let reward = temp.generateChestReward();
-        debugger;
+        // debugger;
         this.game.playerInventory.addItem(reward, 1);
       }
     } else {
-      debugger;
+      // debugger;
       if (!item.interacted) {
         item.interacted = true;
         if (item.type === 'redPot') this.game.playerInventory.addItem(Item.ITEMS[0], 1);
       }
     }
-    this.generateMap();
+    // this.generateMap();
   }
   /*
         EXAMPLE GRID

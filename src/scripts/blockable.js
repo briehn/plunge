@@ -12,8 +12,8 @@ class Blockable {
     this.interacted = false;
   }
 
-  remove(block) {
-    let i = Blockable.BLOCKLIST.indexOf(block);
+  remove() {
+    let i = Blockable.BLOCKLIST.indexOf(this);
     Blockable.BLOCKLIST[i] = null;
     Blockable.BLOCKLIST = Blockable.BLOCKLIST.filter((el) => el !== null);
   }

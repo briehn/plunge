@@ -44,8 +44,14 @@ class Player {
     var maxX = this.map.cols * this.map.tsize - this.height * 2;
     var maxY = this.map.rows * this.map.tsize - this.height * 2;
 
-    this.y = Math.max(16, Math.min(this.y, maxY));
-    this.x = Math.max(16, Math.min(this.x, maxX));
+    if (this.map.isColliding(this, Blockable.BLOCKLIST)) {
+      this.x = this.prevX;
+      this.y = this.prevY;
+    } else {
+      this.y = Math.max(16, Math.min(this.y, maxY));
+      this.x = Math.max(16, Math.min(this.x, maxX));
+    }
+
   }
 
   getPrevCoords() {

@@ -4,7 +4,7 @@ class Inventory {
   }
 
   addItem(item, amt) {
-    debugger;
+    // debugger;
     if (!this.inventoryList[item.id]) {
       this.inventoryList[item.id] = {
         count: 0,
@@ -57,13 +57,13 @@ class Inventory {
         img.setAttribute("src", this.inventoryList[item].src);
         img.setAttribute("alt", item);
         itemTag.appendChild(img);
-        debugger;
+        // debugger;
         inventory.appendChild(itemTag);
       } else if (document.querySelector(`[data-name='${item}']`)) {
-        debugger;
+        // debugger;
         const count = document.querySelector(`.${item}`);
         count.innerText = this.inventoryList[item].count;
-        debugger;
+        // debugger;
       }
     });
   }
