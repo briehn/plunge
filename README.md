@@ -1,6 +1,6 @@
-# NONAME
-###### What is NONAME?
-NONAME is an adventure-style RPG game playable within the browser. Stranded in the middle of nowhere, players must venture off into the unknown: discovering treasure, hunting enemies, and exploring the land.
+# PLUNGE
+###### What is PLUNGE?
+PLUNGE is an adventure-style RPG game playable within the browser. Stuck in the depths of nowhere, players must venture off into the unknown: discovering treasure, hunting enemies, and exploring the land.
 
 
 ## Background
@@ -11,11 +11,11 @@ An adventure-style RPG game consists of a player who is represented with a chara
 
 Players will be able to keep track of the goodies they've collected via the Inventory section of the main screen. The inventory is a grid that will hold all the items the players have collected. Players will be able to interact with the grid to view the item and use it, if useable.
 
-The combat system of NONAME revolves around keystrokes. Players must input a set amount of keys to attack enemies or to defend from enemy attacks. Failure to type in any key strokes after a certain time results in a skipped turn, allowing the enemy to retaliate.
+The combat system of PLUNGE revolves around keystrokes. Players must input a set amount of keys to attack enemies or to defend from enemy attacks. Failure to type in any key strokes after a certain time results in a skipped turn, allowing the enemy to retaliate.
 
 ## Functionality & MVPs
 
-In NONAME, users will be able to:
+In PLUNGE, users will be able to:
 1. Use the arrow keys to move around a grid-like map that will update when the player reaches the border.
 2. Interact with a grid-like inventory to use and view items within.
 3. Interact with objects placed in the map to add new items into their inventory or enter combat with an enemy object.

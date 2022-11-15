@@ -135,7 +135,7 @@ class Map {
         }
       }
       this.isColliding(this.game.player, Blockable.BLOCKLIST);
-      //   this.game.player.generatePlayer();
+        this.game.player.generatePlayer();
     };
   }
 
@@ -143,16 +143,11 @@ class Map {
     for (let i = 0; i < blocklist.length; i++) {
       let rect2 = blocklist[i];
       if (
-        // rect1.x < rect2.x + rect2.width &&
-        // rect1.x + rect1.width > rect2.x &&
-        // rect1.y <= rect2.y + rect2.height &&
-        // rect1.height + rect1.y >= rect2.y
         rect1.x + rect1.width + 5 >= rect2.trueX - rect2.x / 2 && //right of player, left of block
         rect1.x <= rect2.trueX + rect2.width - rect2.x / 2 && //right of block, left of player
         rect1.y <= rect2.trueY + rect2.height && //top of player, bottom of block
         rect1.y + rect1.height >= rect2.trueY //top of block, bottom of player
       ) {
-        console.log("colliding");
         // debugger;
         this.game.player.x = this.game.player.prevX;
         this.game.player.y = this.game.player.prevY;
@@ -165,47 +160,26 @@ class Map {
           }
         });
       }
-<<<<<<< HEAD
     }
   }
 
   pickupItem(item) {
     this.grid[item.i] = 0;
+    const temp = new Item();
     if (item.type === "chest") {
-      if (!item.pickedUp) {
-        item.pickedUp = true;
-        let reward = item.generateChestReward();
+      if (!item.interacted) {
+        item.interacted = true;
+        let reward = temp.generateChestReward();
         debugger;
         this.game.playerInventory.addItem(reward, 1);
       }
     } else {
       debugger;
-      if (!item.pickedUp) {
-        item.pickedUp = true;
-        this.game.playerInventory.addItem(item, 1);
+      if (!item.interacted) {
+        item.interacted = true;
+        if (item.type === 'redPot') this.game.playerInventory.addItem(Item.ITEMS[0], 1);
       }
     }
-=======
-    }
-  }
-
-  pickupItem(item) {
-    this.grid[item.i] = 0;
-    if (item.type === "chest") {
-      if (!item.pickedUp) {
-        item.pickedUp = true;
-        let reward = item.generateChestReward();
-        debugger;
-        this.game.playerInventory.addItem(reward, 1);
-      }
-    } else {
-      debugger;
-      if (!item.pickedUp) {
-        item.pickedUp = true;
-        this.game.playerInventory.addItem(item, 1);
-      }
-    }
->>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
     this.generateMap();
   }
   /*
@@ -254,7 +228,7 @@ class Map {
           Blockable.BLOCKLIST.push(chest);
         } else if (this.isPotion(x, y, i)) {
           let potion = new Blockable(
-            "potion",
+            "redPot",
             x,
             y,
             i,
@@ -334,8 +308,6 @@ class Map {
             why no top right?
             very left side heavy
         */
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (Object.keys(this.chestLocations).length === 0) {
             return this.currentChestCount < this.maxChestCount 
             && (Math.random() > .7)
@@ -371,39 +343,6 @@ class Map {
             }
         })
         return within;
-=======
-=======
->>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
-    if (Object.keys(this.chestLocations).length === 0) {
-      return this.currentChestCount < this.maxChestCount && Math.random() > 0.7;
-    } else {
-      return (
-        this.currentChestCount < this.maxChestCount &&
-        Math.random() > 0.7 &&
-        !this.withinBoundaries({ x: x, y: y, i: i }, this.chestLocations, 12, 7)
-      );
-<<<<<<< HEAD
->>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
-=======
->>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
-    }
-  }
-
-  withinBoundaries(currentItem, locations, dx, dy) {
-    let within = false;
-    let cI = currentItem.i;
-    Object.values(locations).forEach((coords) => {
-      let focus = coords.i;
-      let lowestBound = focus - dx - this.rows * dy;
-      for (let j = 0; j < dy * 2; j++) {
-        let leftBound = lowestBound + j * this.rows;
-        let rightBound = leftBound + dx * 2;
-        if (cI > leftBound && cI < rightBound) {
-          within = true;
-        }
-      }
-    });
-    return within;
   }
 }
 

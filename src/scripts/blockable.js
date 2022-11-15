@@ -1,8 +1,5 @@
-import Item from "./item.js";
-
-class Blockable extends Item {
+class Blockable {
   constructor(type, x, y, i, width, height, src) {
-    super();
     this.type = type;
     this.x = x;
     this.y = y;
@@ -12,6 +9,7 @@ class Blockable extends Item {
     this.width = width;
     this.height = height;
     this.src = src;
+    this.interacted = false;
   }
 
   remove(block) {

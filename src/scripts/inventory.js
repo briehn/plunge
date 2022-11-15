@@ -47,8 +47,8 @@ class Inventory {
         itemTag.style.margin = "5px";
         itemTag.setAttribute("data-name", item);
         const count = document.createElement("p");
-        count.classList.add(item.id);
-        count.innerText = this.inventoryList[item].count; //add live count
+        count.classList.add(item);
+        count.innerText = this.inventoryList[item].count;
         count.style.position = "absolute";
         count.style.fontSize = "16px";
         count.style.left = "5px";
@@ -57,12 +57,13 @@ class Inventory {
         img.setAttribute("src", this.inventoryList[item].src);
         img.setAttribute("alt", item);
         itemTag.appendChild(img);
-        // debugger;
+        debugger;
         inventory.appendChild(itemTag);
       } else if (document.querySelector(`[data-name='${item}']`)) {
         debugger;
         const count = document.querySelector(`.${item}`);
         count.innerText = this.inventoryList[item].count;
+        debugger;
       }
     });
   }

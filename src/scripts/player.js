@@ -15,10 +15,6 @@ class Player {
   }
 
   generatePlayer() {
-    // const wall = this.data[55];
-    // const wallX = wall.keys[0].bounds["x"];
-    // const wallY = wall.keys[0].bounds["y"];
-    // const wallSize = 16;
     const tileSheet = new Image();
     tileSheet.src = "./src/assets/tileSheet.png";
 
