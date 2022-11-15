@@ -165,6 +165,7 @@ class Map {
           }
         });
       }
+<<<<<<< HEAD
     }
   }
 
@@ -184,6 +185,27 @@ class Map {
         this.game.playerInventory.addItem(item, 1);
       }
     }
+=======
+    }
+  }
+
+  pickupItem(item) {
+    this.grid[item.i] = 0;
+    if (item.type === "chest") {
+      if (!item.pickedUp) {
+        item.pickedUp = true;
+        let reward = item.generateChestReward();
+        debugger;
+        this.game.playerInventory.addItem(reward, 1);
+      }
+    } else {
+      debugger;
+      if (!item.pickedUp) {
+        item.pickedUp = true;
+        this.game.playerInventory.addItem(item, 1);
+      }
+    }
+>>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
     this.generateMap();
   }
   /*
@@ -313,6 +335,7 @@ class Map {
             very left side heavy
         */
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (Object.keys(this.chestLocations).length === 0) {
             return this.currentChestCount < this.maxChestCount 
             && (Math.random() > .7)
@@ -349,6 +372,8 @@ class Map {
         })
         return within;
 =======
+=======
+>>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
     if (Object.keys(this.chestLocations).length === 0) {
       return this.currentChestCount < this.maxChestCount && Math.random() > 0.7;
     } else {
@@ -357,6 +382,9 @@ class Map {
         Math.random() > 0.7 &&
         !this.withinBoundaries({ x: x, y: y, i: i }, this.chestLocations, 12, 7)
       );
+<<<<<<< HEAD
+>>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
+=======
 >>>>>>> bcc5d6a5844e0762ae47e768841f9e6dbd2c80eb
     }
   }
