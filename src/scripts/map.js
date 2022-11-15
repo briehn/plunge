@@ -25,6 +25,7 @@ class Map {
 
     //blockable list
     this.blockades = Blockable.BLOCKLIST;
+    this.previousCollision = null;
 
     //pulling from local json file that contains data of tile location/name
     this.data = require("../assets/tileSheetData.json").meta.slices;
@@ -151,13 +152,14 @@ class Map {
         // debugger;
         console.log(rect2);
         window.addEventListener("keydown", (e) => {
-          if (e.key === "e") {
+          if (e.key === "e" && this.previousCollision === rect2) {
             // debugger;
             console.log(rect2);
             rect2.remove();
             this.pickupItem(rect2);
           }
         });
+        this.previousCollision = rect2;
         return true;
       }
     }
@@ -180,19 +182,10 @@ class Map {
         if (item.type === 'redPot') this.game.playerInventory.addItem(Item.ITEMS[0], 1);
       }
     }
-    // this.generateMap();
   }
   /*
         EXAMPLE GRID
         WALLS = 
-
-        
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
-        12,                             , 23
-        24,                             , 35
-        36,                             , 47
-        48,
-
 
         7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
         7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7,
