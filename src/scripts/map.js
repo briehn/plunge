@@ -23,6 +23,13 @@ class Map {
     this.currentPotionCount = 0;
     this.maxPotionCount = 12;
 
+    
+    //used for enemies
+    this.enemyLocations = {};
+    this.currentEnemyCount = 0;
+    this.maxEnemyCount = 12;
+
+
     //blockable list
     this.blockades = Blockable.BLOCKLIST;
     this.previousCollision = null;
@@ -60,6 +67,13 @@ class Map {
       const potionY = potion.keys[0].bounds["y"];
       const potionW = potion.keys[0].bounds["w"];
       const potionH = potion.keys[0].bounds["h"];
+
+      
+      const bat = this.data[107];
+      const batX = bat.keys[0].bounds["x"];
+      const batY = bat.keys[0].bounds["y"];
+      const batW = bat.keys[0].bounds["w"];
+      const batH = bat.keys[0].bounds["h"];
 
       /*
             drawImage(
@@ -133,6 +147,19 @@ class Map {
                 tileSize
               );
               break;
+            case 2:
+              this.ctx.drawImage(
+                tileSheet,
+                batX,
+                batY,
+                batW,
+                batH,
+                x * tileSize,
+                y * tileSize,
+                tileSize,
+                tileSize
+              );
+              break;
           }
         }
       }
@@ -150,11 +177,9 @@ class Map {
         rect1.y + rect1.height >= rect2.trueY //top of block, bottom of player
       ) {
         // debugger;
-        console.log(rect2);
         window.addEventListener("keydown", (e) => {
           if (e.key === "e" && this.previousCollision === rect2) {
             // debugger;
-            console.log(rect2);
             rect2.remove();
             this.pickupItem(rect2);
           }
@@ -232,7 +257,19 @@ class Map {
           Blockable.BLOCKLIST.push(potion);
           this.grid[i] = 4;
           this.currentPotionCount += 1;
-          // console.log(this.potionLocations)
+        } else if (this.isEnemy(x, y, i)) {
+          let enemy = new Blockable(
+            "monsterBat",
+            x,
+            y,
+            i,
+            16,
+            16,
+            "./src/assets/items/monster_bat.png"
+          );
+          Blockable.BLOCKLIST.push(enemy);
+          this.grid[i] = 2;
+          this.currentEnemyCount += 1;
         } else {
           this.grid[i] = 0;
         }
@@ -249,6 +286,18 @@ class Map {
     );
   }
 
+  isEnemy(x, y, i) {
+    if (this.checkEnemy(x, y, i)) {
+      this.enemyLocations[this.currentEnemyCount] = {
+        x: x,
+        y: y,
+        i: i,
+      };
+      return true;
+    } else {
+      return false;
+    }
+  }
   isChest(x, y, i) {
     if (this.checkChest(x, y, i)) {
       this.chestLocations[this.currentChestCount] = {
@@ -272,6 +321,24 @@ class Map {
       return true;
     } else {
       return false;
+    }
+  }
+  checkEnemy(x, y, i) {
+    if (Object.keys(this.enemyLocations).length === 0) {
+      return (
+        this.currentEnemyCount < this.maxEnemyCount && Math.random() > 0.5
+      );
+    } else {
+      return (
+        this.currentPotionCount < this.maxEnemyCount &&
+        Math.random() > 0.5 &&
+        !this.withinBoundaries(
+          { x: x, y: y, i: i },
+          this.enemyLocations,
+          6,
+          6
+        )
+      );
     }
   }
 
