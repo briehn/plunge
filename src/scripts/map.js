@@ -188,9 +188,11 @@ class Map {
         // debugger;
         window.addEventListener("keydown", (e) => {
           if (e.key === "e" && this.previousCollision === rect2) {
+            if (rect2.type !== 'enemy') {
+              rect2.remove();
+              this.pickupItem(rect2);
+            }
             // debugger;
-            rect2.remove();
-            this.pickupItem(rect2);
           }
         });
         this.previousCollision = rect2;
@@ -200,20 +202,22 @@ class Map {
   }
 
   pickupItem(item) {
-    this.grid[item.i] = 0;
-    const temp = new Item();
-    if (item.type === "chest") {
-      if (!item.interacted) {
-        item.interacted = true;
-        let reward = temp.generateChestReward();
+    if (item.type !== 'enemy') {
+      this.grid[item.i] = 0;
+      const temp = new Item();
+      if (item.type === "chest") {
+        if (!item.interacted) {
+          item.interacted = true;
+          let reward = temp.generateChestReward();
+          // debugger;
+          this.game.playerInventory.addItem(reward, 1);
+        }
+      } else {
         // debugger;
-        this.game.playerInventory.addItem(reward, 1);
-      }
-    } else {
-      // debugger;
-      if (!item.interacted) {
-        item.interacted = true;
-        if (item.type === 'redPot') this.game.playerInventory.addItem(Item.ITEMS[0], 1);
+        if (!item.interacted) {
+          item.interacted = true;
+          if (item.type === 'redPot') this.game.playerInventory.addItem(Item.ITEMS[0], 1);
+        }
       }
     }
   }
@@ -268,7 +272,7 @@ class Map {
           this.currentPotionCount += 1;
         } else if (this.isEnemy(x, y, i)) {
           let enemy = new Blockable(
-            "monsterBat",
+            "enemy",
             x,
             y,
             i,
