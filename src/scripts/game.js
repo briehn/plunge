@@ -21,12 +21,6 @@ class Game {
   render() {
     if (!this.initialRender) {
       this.initialRender = true;
-      const height = this.ctx.canvas.height;
-      const width = this.ctx.canvas.width;
-      this.ctx.fillStyle = "black";
-      this.ctx.strokeStyle = "black";
-      this.ctx.fillRect(0, 0, width, height);
-      this.ctx.stroke();
       this.map.createGrid();
     }
     KeyListener.listen();

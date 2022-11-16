@@ -1,3 +1,5 @@
+import Item from "./item.js";
+
 class Inventory {
   constructor() {
     this.inventoryList = {};
@@ -30,6 +32,7 @@ class Inventory {
 
   displayGrid() {
     const inventory = document.querySelector(".inventory");
+    const section = document.querySelector(".inventory-desc");
     // debugger;
     let keys = Object.keys(this.inventoryList);
     keys.forEach((item) => {
@@ -38,14 +41,8 @@ class Inventory {
       if (!document.querySelector(`[data-name='${item}']`)) {
         // debugger;
         const itemTag = document.createElement("li");
-        itemTag.style.display = "block";
-        itemTag.style.position = "relative";
-        itemTag.style.width = "15%";
-        itemTag.style.height = "15%";
-        itemTag.style.border = "1px solid #000";
-        itemTag.style.borderRadius = "5px";
-        itemTag.style.margin = "5px";
         itemTag.setAttribute("data-name", item);
+        itemTag.classList.add('itemTag');
         const count = document.createElement("p");
         count.classList.add(item);
         count.innerText = this.inventoryList[item].count;
@@ -59,6 +56,13 @@ class Inventory {
         itemTag.appendChild(img);
         // debugger;
         inventory.appendChild(itemTag);
+        itemTag.addEventListener('mouseenter', (e) => {
+          section.classList.remove('hidden');
+          this.showItemDesc(item);
+        });
+        itemTag.addEventListener('mouseleave', (e) => {
+          section.classList.add('hidden');
+        });
       } else if (document.querySelector(`[data-name='${item}']`)) {
         // debugger;
         const count = document.querySelector(`.${item}`);
@@ -66,6 +70,21 @@ class Inventory {
         // debugger;
       }
     });
+
+  }
+
+  showItemDesc(id) {
+    const section = document.querySelector(".inventory-desc");
+    const image = document.querySelector(".itemImage");
+    const itemName = document.querySelector(".item-name");
+    const itemDesc = document.querySelector(".item-desc");
+    const item = Item.findById(id);
+    section.style.borderTop = '1px solid black';
+    image.setAttribute("src", item.src);
+    image.setAttribute("alt", item.id);
+    itemName.innerHTML = `<p class='strong'>Name:</p> ${item.name}`;
+    itemDesc.innerHTML = `<p class='strong'>Description:</p> ${item.desc}`;
+    
   }
 }
 

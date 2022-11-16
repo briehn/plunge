@@ -1,6 +1,4 @@
 import Game from "./scripts/game.js";
-import Item from "./scripts/item.js";
-import Inventory from "./scripts/inventory.js";
 
 /* 
     ROADMAP:

@@ -36,6 +36,12 @@ class Map {
 
     //pulling from local json file that contains data of tile location/name
     this.data = require("../assets/tileSheetData.json").meta.slices;
+
+    this.wall = this.data[55];
+    this.floor = this.data[48];
+    this.chest = this.data[41];
+    this.potion = this.data[29];
+    this.bat = this.data[107];
   }
 
   generateMap() {
@@ -48,38 +54,38 @@ class Map {
     tileSheet.onload = () => {
       this.game.player.generatePlayer();
       const tileSize = 16;
-      const wall = this.data[55];
-      const wallX = wall.keys[0].bounds["x"];
-      const wallY = wall.keys[0].bounds["y"];
+      // const wall = this.data[55];
+      const wallX = this.wall.keys[0].bounds["x"];
+      const wallY = this.wall.keys[0].bounds["y"];
 
-      const floor = this.data[48];
-      const floorX = floor.keys[0].bounds["x"];
-      const floorY = floor.keys[0].bounds["y"];
+      // const floor = this.data[48];
+      const floorX = this.floor.keys[0].bounds["x"];
+      const floorY = this.floor.keys[0].bounds["y"];
 
-      const chest = this.data[41];
-      const chestX = chest.keys[0].bounds["x"];
-      const chestY = chest.keys[0].bounds["y"];
-      const chestW = chest.keys[0].bounds["w"];
-      const chestH = chest.keys[0].bounds["h"];
+      // const chest = this.data[41];
+      const chestX = this.chest.keys[0].bounds["x"];
+      const chestY = this.chest.keys[0].bounds["y"];
+      const chestW = this.chest.keys[0].bounds["w"];
+      const chestH = this.chest.keys[0].bounds["h"];
 
-      const potion = this.data[29];
-      const potionX = potion.keys[0].bounds["x"];
-      const potionY = potion.keys[0].bounds["y"];
-      const potionW = potion.keys[0].bounds["w"];
-      const potionH = potion.keys[0].bounds["h"];
+      // const potion = this.data[29];
+      const potionX = this.potion.keys[0].bounds["x"];
+      const potionY = this.potion.keys[0].bounds["y"];
+      const potionW = this.potion.keys[0].bounds["w"];
+      const potionH = this.potion.keys[0].bounds["h"];
 
       
-      const bat = this.data[107];
-      const batX = bat.keys[0].bounds["x"];
-      const batY = bat.keys[0].bounds["y"];
-      const batW = bat.keys[0].bounds["w"];
-      const batH = bat.keys[0].bounds["h"];
+      // const bat = this.data[107];
+      const batX = this.bat.keys[0].bounds["x"];
+      const batY = this.bat.keys[0].bounds["y"];
+      const batW = this.bat.keys[0].bounds["w"];
+      const batH = this.bat.keys[0].bounds["h"];
 
       /*
             drawImage(
                 image,
                 cropStartX,
-                cropStarTy, 
+                cropStartY, 
                 cropWidth,
                 cropHeight, 
                 drawX, 
@@ -88,6 +94,22 @@ class Map {
                 drawHeight
                 );
             */
+
+      for (let x = 0; x < this.cols; x++) {
+        for (let y = 0; y < this.rows; y++) {
+          this.ctx.drawImage(
+            tileSheet,
+            floorX,
+            floorY,
+            tileSize,
+            tileSize,
+            x * tileSize,
+            y * tileSize,
+            tileSize,
+            tileSize
+          );
+        }
+      }
 
       for (let x = 0; x < this.cols; x++) {
         for (let y = 0; y < this.rows; y++) {
@@ -100,19 +122,6 @@ class Map {
                 tileSheet,
                 wallX,
                 wallY,
-                tileSize,
-                tileSize,
-                x * tileSize,
-                y * tileSize,
-                tileSize,
-                tileSize
-              );
-              break;
-            case 0:
-              this.ctx.drawImage(
-                tileSheet,
-                floorX,
-                floorY,
                 tileSize,
                 tileSize,
                 x * tileSize,

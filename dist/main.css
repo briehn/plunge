@@ -5,36 +5,73 @@
 /*!*****************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (1) ***!
   \*****************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@300&display=swap);
+/*!*****************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss (2) ***!
+  \*****************************************************************************************************************************************/
 body {
-  background-color: #333333;
+  background-image: url("../src/assets/background.png");
+  background-size: cover;
+  background-color: #D3C0CD;
 }
 
 .main {
   display: flex;
 }
 
+.strong {
+  font-weight: bold;
+}
+
+.title {
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 36px;
+  color: #B9C6AE;
+  font-family: Fjalla One;
+}
+
 .instructions-section {
-  margin-left: 5%;
+  margin-left: 10%;
   width: 300px;
   text-align: center;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.4745098039);
-  font-weight: bold;
+  background-color: #8A95A5;
+  user-select: none;
   font-size: 36px;
-  font-family: Montserrat;
-  user-select: none; /* Standard */
+  border-color: white;
+  border-width: 5px;
+  border: 5px solid rgba(32, 75, 87, 0.4352941176);
 }
 
 .inventory-section {
-  margin-right: 5%;
+  margin-right: 10%;
   width: 300px;
   text-align: center;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.4745098039);
-  font-weight: bold;
+  background-color: #8A95A5;
+  user-select: none;
   font-size: 36px;
-  font-family: Montserrat;
-  user-select: none; /* Standard */
+  border: 5px solid rgba(32, 75, 87, 0.4352941176);
+}
+
+.inventory-desc {
+  height: 25%;
+  font-size: 16px;
+}
+
+.itemImage {
+  margin-top: 5px;
+  width: 10%;
+  height: 10%;
+}
+
+.inventory {
+  list-style: none;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  height: 65%;
 }
 
 .logo-class {
@@ -54,20 +91,30 @@ body {
   padding: 0 1em;
 }
 
-.inventory {
-  list-style: none;
-  display: flex;
-  flex-flow: wrap;
-  justify-content: center;
-}
-
 .icons {
-  width: 200px;
+  margin: 5px;
 }
 
 .links {
+  margin-top: 4%;
   display: flex;
   justify-content: flex-end;
+}
+
+.itemTag {
+  display: block;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.619);
+  width: 13%;
+  height: 10%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
