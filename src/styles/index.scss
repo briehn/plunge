@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 
 body {
-  background-color: lemonchiffon;
+  background-color: #333333;
 }
 
 .main {
@@ -9,29 +9,31 @@ body {
 }
 
 .instructions-section {
-    margin-left: 5%;
-    width: 300px;
-    text-align: center;
-    border: 3px solid black;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.479);
-    font-weight: bold;
-    font-size: 36px;
-    font-family: Montserrat;
-    user-select: none; /* Standard */
+  margin-left: 5%;
+  width: 300px;
+  text-align: center;
+  // border: 3px solid black;
+  border-radius: 10px;
+  // background-color: rgba(255, 255, 255, 0.479);
+  background-color: #ffffff79;
+  font-weight: bold;
+  font-size: 36px;
+  font-family: Montserrat;
+  user-select: none; /* Standard */
 }
 
 .inventory-section {
-    margin-right: 5%;
-    width: 300px;
-    text-align: center;
-    border: 3px solid black;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.479);    
-    font-weight: bold;
-    font-size: 36px;
-    font-family: Montserrat;
-    user-select: none; /* Standard */
+  margin-right: 5%;
+  width: 300px;
+  text-align: center;
+  // border: 3px solid black;
+  border-radius: 10px;
+  // background-color: rgba(255, 255, 255, 0.479);
+  background-color: #ffffff79;
+  font-weight: bold;
+  font-size: 36px;
+  font-family: Montserrat;
+  user-select: none; /* Standard */
 }
 
 .logo-class {
@@ -42,11 +44,28 @@ body {
 }
 
 #logo {
-  width: 20%;
+  width: 25%;
 }
 
 .center-section {
-    width: 512px;
-    margin: 0 auto;
-    padding: 0 1em;
+  width: 512px;
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.inventory {
+  list-style: none;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+}
+
+
+.icons {
+  width: 200px;
+}
+
+.links {
+  display: flex;
+  justify-content: flex-end;
 }

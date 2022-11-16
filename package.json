@@ -1,7 +1,7 @@
 {
-  "name": "noname",
+  "name": "plunge",
   "version": "1.0.0",
-  "description": "NONAME is an adventure-style RPG game playable within the browser. Stranded in the middle of nowhere, players must venture off into the unknown: discovering treasure, hunting enemies, and exploring the land.",
+  "description": "plunge is an adventure-style RPG game playable within the browser. Stranded in the middle of nowhere, players must venture off into the unknown: discovering treasure, hunting enemies, and exploring the land.",
   "main": "index.js",
   "browserslist": [
     "defaults"
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/briehn/noname.git"
+    "url": "git+https://github.com/briehn/plunge.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/briehn/noname/issues"
+    "url": "https://github.com/briehn/plunge/issues"
   },
-  "homepage": "https://github.com/briehn/noname#readme",
+  "homepage": "https://github.com/briehn/plunge#readme",
   "dependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
