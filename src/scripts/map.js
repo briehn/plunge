@@ -23,12 +23,10 @@ class Map {
     this.currentPotionCount = 0;
     this.maxPotionCount = 12;
 
-    
     //used for enemies
     this.enemyLocations = {};
     this.currentEnemyCount = 0;
     this.maxEnemyCount = 12;
-
 
     //blockable list
     this.blockades = Blockable.BLOCKLIST;
@@ -74,7 +72,6 @@ class Map {
       const potionW = this.potion.keys[0].bounds["w"];
       const potionH = this.potion.keys[0].bounds["h"];
 
-      
       // const bat = this.data[107];
       const batX = this.bat.keys[0].bounds["x"];
       const batY = this.bat.keys[0].bounds["y"];
@@ -172,7 +169,7 @@ class Map {
           }
         }
       }
-        // this.game.player.generatePlayer();
+      // this.game.player.generatePlayer();
     };
   }
 
@@ -188,7 +185,7 @@ class Map {
         // debugger;
         window.addEventListener("keydown", (e) => {
           if (e.key === "e" && this.previousCollision === rect2) {
-            if (rect2.type !== 'enemy') {
+            if (rect2.type !== "enemy") {
               rect2.remove();
               this.pickupItem(rect2);
             }
@@ -202,7 +199,7 @@ class Map {
   }
 
   pickupItem(item) {
-    if (item.type !== 'enemy') {
+    if (item.type !== "enemy") {
       this.grid[item.i] = 0;
       const temp = new Item();
       if (item.type === "chest") {
@@ -216,7 +213,8 @@ class Map {
         // debugger;
         if (!item.interacted) {
           item.interacted = true;
-          if (item.type === 'redPot') this.game.playerInventory.addItem(Item.ITEMS[0], 1);
+          if (item.type === "redPot")
+            this.game.playerInventory.addItem(Item.ITEMS[0], 1);
         }
       }
     }
@@ -338,19 +336,12 @@ class Map {
   }
   checkEnemy(x, y, i) {
     if (Object.keys(this.enemyLocations).length === 0) {
-      return (
-        this.currentEnemyCount < this.maxEnemyCount && Math.random() > 0.5
-      );
+      return this.currentEnemyCount < this.maxEnemyCount && Math.random() > 0.5;
     } else {
       return (
         this.currentPotionCount < this.maxEnemyCount &&
         Math.random() > 0.5 &&
-        !this.withinBoundaries(
-          { x: x, y: y, i: i },
-          this.enemyLocations,
-          6,
-          6
-        )
+        !this.withinBoundaries({ x: x, y: y, i: i }, this.enemyLocations, 6, 6)
       );
     }
   }
@@ -381,17 +372,18 @@ class Map {
             why no top right?
             very left side heavy
         */
-        if (Object.keys(this.chestLocations).length === 0) {
-            return this.currentChestCount < this.maxChestCount 
-            && (Math.random() > .7)
-        } else {
-            return this.currentChestCount < this.maxChestCount
-            && (Math.random() > .7)
-            && !this.withinBoundaries({x: x, y: y, i: i}, this.chestLocations, 12, 7)
-        }
+    if (Object.keys(this.chestLocations).length === 0) {
+      return this.currentChestCount < this.maxChestCount && Math.random() > 0.7;
+    } else {
+      return (
+        this.currentChestCount < this.maxChestCount &&
+        Math.random() > 0.7 &&
+        !this.withinBoundaries({ x: x, y: y, i: i }, this.chestLocations, 12, 7)
+      );
     }
+  }
 
-    /*
+  /*
             0
            000
           00000
@@ -401,21 +393,21 @@ class Map {
             0
     */
 
-    withinBoundaries(currentItem, locations, dx, dy) {
-        let within = false;
-        let cI = currentItem.i
-        Object.values(locations).forEach((coords) => {
-            let focus = coords.i;
-            let lowestBound = ((focus - dx) - (this.rows * dy))
-            for (let j = 0; j < (dy * 2); j++) {
-                let leftBound = lowestBound + (j * this.rows);
-                let rightBound = leftBound + (dx * 2);
-                if (cI > leftBound && cI < rightBound) {
-                    within = true;
-                }
-            }
-        })
-        return within;
+  withinBoundaries(currentItem, locations, dx, dy) {
+    let within = false;
+    let cI = currentItem.i;
+    Object.values(locations).forEach((coords) => {
+      let focus = coords.i;
+      let lowestBound = focus - dx - this.rows * dy;
+      for (let j = 0; j < dy * 2; j++) {
+        let leftBound = lowestBound + j * this.rows;
+        let rightBound = leftBound + dx * 2;
+        if (cI > leftBound && cI < rightBound) {
+          within = true;
+        }
+      }
+    });
+    return within;
   }
 }
 
