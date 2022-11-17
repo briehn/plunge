@@ -2,7 +2,7 @@
 
 ###### What is PLUNGE?
 
-PLUNGE is an adventure-style RPG game playable within the browser. Stuck in the depths of nowhere, players must venture off into the unknown: discovering treasure, hunting enemies, and exploring the land.
+[PLUNGE](https://briehn.github.io/plunge/) is an adventure-style RPG game playable within the browser. Stuck in the depths of nowhere, players must venture off into the unknown: discovering treasure, hunting enemies, and exploring the land.
 
 ## Background
 
