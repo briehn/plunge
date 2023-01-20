@@ -1,11 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@300&display=swap");
 
 body {
   background-image: url("../src/assets/background.png");
+<<<<<<< HEAD
   background-size:cover;
   background-color: #D3C0CD;
   background-repeat: no-repeat;
+=======
+  background-size: cover;
+  background-color: #d3c0cd;
+>>>>>>> 0bc479c14eff7fd09d10a3f29f0de047afad84ec
 }
 
 .main {
@@ -20,17 +25,22 @@ body {
   margin-top: 5px;
   font-weight: bold;
   font-size: 36px;
-  color: #B9C6AE;
+  color: #b9c6ae;
   font-family: Fjalla One;
 }
 
 .instructions-section {
-  margin-left: 10%;
+  margin-left: 7%;
   width: 300px;
   text-align: center;
   border-radius: 10px;
+<<<<<<< HEAD
   background-color: #dbdbdb;
   user-select: none; 
+=======
+  background-color: #8a95a5;
+  user-select: none;
+>>>>>>> 0bc479c14eff7fd09d10a3f29f0de047afad84ec
   font-size: 36px;
   border-color: white;
   border-width: 5px;
@@ -38,12 +48,17 @@ body {
 }
 
 .inventory-section {
-  margin-right: 10%;
+  margin-right: 7%;
   width: 300px;
   text-align: center;
   border-radius: 10px;
+<<<<<<< HEAD
   background-color: #dbdbdb;
   user-select: none; 
+=======
+  background-color: #8a95a5;
+  user-select: none;
+>>>>>>> 0bc479c14eff7fd09d10a3f29f0de047afad84ec
   font-size: 36px;
   border: 5px solid #0000006f;
 }
@@ -93,21 +108,20 @@ body {
 }
 
 .links {
-  margin-top: 4%;
   display: flex;
   justify-content: flex-end;
 }
 
 .itemTag {
-  display : block;
-  position : relative;
+  display: block;
+  position: relative;
   background-color: rgba(255, 255, 255, 0.619);
-  width : 13%;
-  height : 10%;
-  border : 1px solid #000;
-  border-radius : 5px;
-  margin : 5px;
-  cursor : pointer;
+  width: 13%;
+  height: 10%;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
 }
 
 .hidden {
