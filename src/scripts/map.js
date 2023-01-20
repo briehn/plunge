@@ -27,7 +27,7 @@ class Map {
     //used for enemies
     this.enemyLocations = {};
     this.currentEnemyCount = 0;
-    this.maxEnemyCount = 12;
+    this.maxEnemyCount = 24;
 
 
     //blockable list
@@ -343,7 +343,7 @@ class Map {
       );
     } else {
       return (
-        this.currentPotionCount < this.maxEnemyCount &&
+        this.currentEnemyCount < this.maxEnemyCount &&
         Math.random() > 0.5 &&
         !this.withinBoundaries(
           { x: x, y: y, i: i },
