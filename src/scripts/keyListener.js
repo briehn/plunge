@@ -44,7 +44,6 @@ KeyListener.listen = function () {
 };
 
 KeyListener.isDown = function (key) {
-  //   console.log(this.KEYS);
   return this.KEYS[key].pressed;
 };
 

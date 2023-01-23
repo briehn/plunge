@@ -31,9 +31,7 @@ class Game {
   update() {
     let dirx = 0;
     let diry = 0;
-    // debugger;
     if (KeyListener.isDown("up")) {
-      //   debugger;
       diry = -1;
     } else if (KeyListener.isDown("down")) {
       diry = 1;
@@ -42,21 +40,17 @@ class Game {
     } else if (KeyListener.isDown("right")) {
       dirx = 1;
     }
-    // console.log(KEYS);
     this.player.getPrevCoords();
     this.player.move(dirx, diry);
   }
 
   tick(elapsed) {
-    // this.ctx.clearRect(0, 0, 512, 512);
-
     var delay = (elapsed - this._previousElapsed) / 1000.0;
     delay = Math.min(delay, 0.25);
     this._previousElapsed = elapsed;
 
     this.update();
     this.render();
-    // this.player.generatePlayer();
   }
 }
 

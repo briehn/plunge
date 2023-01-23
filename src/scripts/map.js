@@ -176,8 +176,8 @@ class Map {
     for (let i = 0; i < blocklist.length; i++) {
       let rect2 = blocklist[i];
       if (
-        rect1.x + rect1.width + 5 >= rect2.trueX - rect2.x / 2 && //right of player, left of block
-        rect1.x <= rect2.trueX + rect2.width - rect2.x / 2 && //right of block, left of player
+        rect1.x >= rect2.trueX - rect2.x / 2 && //right of player, left of block
+        rect1.x <= rect2.trueX + rect2.width && //right of block, left of player
         rect1.y <= rect2.trueY + rect2.height && //top of player, bottom of block
         rect1.y + rect1.height >= rect2.trueY //top of block, bottom of player
       ) {

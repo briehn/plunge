@@ -8,7 +8,7 @@ class Player {
     this.y = y;
     this.prevX = null;
     this.prevY = null;
-    this.height = 32;
+    this.height = 16;
     this.width = 16;
     this.player = require("../assets/tileSheetData.json").meta.slices[150];
     Player.SPEED = 2;
@@ -51,7 +51,6 @@ class Player {
       this.y = Math.max(16, Math.min(this.y, maxY));
       this.x = Math.max(16, Math.min(this.x, maxX));
     }
-
   }
 
   getPrevCoords() {
