@@ -245,37 +245,39 @@ class Map {
         let i = y * this.cols + x;
         if (this.isBoundary(i)) {
           this.grid[i] = 7;
-        } else if (this.isChest(x, y, i)) {
-          this.grid[i] = 3;
-          this.currentChestCount += 1;
-          let chest = new Blockable("chest", x, y, i, 16, 16);
-          Blockable.BLOCKLIST.push(chest);
-        } else if (this.isPotion(x, y, i)) {
-          let potion = new Blockable(
-            "redPot",
-            x,
-            y,
-            i,
-            9,
-            11,
-            "./src/assets/items/flask_big_red.png"
-          );
-          Blockable.BLOCKLIST.push(potion);
-          this.grid[i] = 4;
-          this.currentPotionCount += 1;
-        } else if (this.isEnemy(x, y, i)) {
-          let enemy = new Blockable(
-            "enemy",
-            x,
-            y,
-            i,
-            16,
-            16,
-            "./src/assets/items/monster_bat.png"
-          );
-          Blockable.BLOCKLIST.push(enemy);
-          this.grid[i] = 2;
-          this.currentEnemyCount += 1;
+        } else if (x > 1 && y > 1 && y < this.rows - 2 && x < this.cols - 2) {
+          if (this.isChest(x, y, i)) {
+            this.grid[i] = 3;
+            this.currentChestCount += 1;
+            let chest = new Blockable("chest", x, y, i, 16, 16);
+            Blockable.BLOCKLIST.push(chest);
+          } else if (this.isPotion(x, y, i)) {
+            let potion = new Blockable(
+              "redPot",
+              x,
+              y,
+              i,
+              9,
+              11,
+              "./src/assets/items/flask_big_red.png"
+            );
+            Blockable.BLOCKLIST.push(potion);
+            this.grid[i] = 4;
+            this.currentPotionCount += 1;
+          } else if (this.isEnemy(x, y, i)) {
+            let enemy = new Blockable(
+              "enemy",
+              x,
+              y,
+              i,
+              16,
+              16,
+              "./src/assets/items/monster_bat.png"
+            );
+            Blockable.BLOCKLIST.push(enemy);
+            this.grid[i] = 2;
+            this.currentEnemyCount += 1;
+          }
         } else {
           this.grid[i] = 0;
         }
@@ -373,7 +375,7 @@ class Map {
       return (
         this.currentChestCount < this.maxChestCount &&
         Math.random() > 0.7 &&
-        !this.withinBoundaries({ x: x, y: y, i: i }, this.chestLocations, 12, 7)
+        !this.withinBoundaries({ x: x, y: y, i: i }, this.chestLocations, 6, 9)
       );
     }
   }
