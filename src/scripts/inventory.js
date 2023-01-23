@@ -6,16 +6,13 @@ class Inventory {
   }
 
   addItem(item, amt) {
-    // debugger;
     if (!this.inventoryList[item.id]) {
       this.inventoryList[item.id] = {
         count: 0,
         src: item.src,
       };
     }
-    // debugger;
     this.inventoryList[item.id].count += amt;
-    // console.log(this.inventoryList);
     this.displayGrid();
   }
 
@@ -33,16 +30,12 @@ class Inventory {
   displayGrid() {
     const inventory = document.querySelector(".inventory");
     const section = document.querySelector(".inventory-desc");
-    // debugger;
     let keys = Object.keys(this.inventoryList);
     keys.forEach((item) => {
-      // console.log(keys);
-      // console.log(item);
       if (!document.querySelector(`[data-name='${item}']`)) {
-        // debugger;
         const itemTag = document.createElement("li");
         itemTag.setAttribute("data-name", item);
-        itemTag.classList.add('itemTag');
+        itemTag.classList.add("itemTag");
         const count = document.createElement("p");
         count.classList.add(item);
         count.innerText = this.inventoryList[item].count;
@@ -54,23 +47,19 @@ class Inventory {
         img.setAttribute("src", this.inventoryList[item].src);
         img.setAttribute("alt", item);
         itemTag.appendChild(img);
-        // debugger;
         inventory.appendChild(itemTag);
-        itemTag.addEventListener('mouseenter', (e) => {
-          section.classList.remove('hidden');
+        itemTag.addEventListener("mouseenter", (e) => {
+          section.classList.remove("hidden");
           this.showItemDesc(item);
         });
-        itemTag.addEventListener('mouseleave', (e) => {
-          section.classList.add('hidden');
+        itemTag.addEventListener("mouseleave", (e) => {
+          section.classList.add("hidden");
         });
       } else if (document.querySelector(`[data-name='${item}']`)) {
-        // debugger;
         const count = document.querySelector(`.${item}`);
         count.innerText = this.inventoryList[item].count;
-        // debugger;
       }
     });
-
   }
 
   showItemDesc(id) {
@@ -79,12 +68,11 @@ class Inventory {
     const itemName = document.querySelector(".item-name");
     const itemDesc = document.querySelector(".item-desc");
     const item = Item.findById(id);
-    section.style.borderTop = '1px solid black';
+    section.style.borderTop = "1px solid black";
     image.setAttribute("src", item.src);
     image.setAttribute("alt", item.id);
     itemName.innerHTML = `<p class='strong'>Name:</p> ${item.name}`;
     itemDesc.innerHTML = `<p class='strong'>Description:</p> ${item.desc}`;
-    
   }
 }
 

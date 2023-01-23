@@ -114,7 +114,6 @@ class Map {
           let index = this.grid[i];
           switch (index) {
             case 7:
-              // debugger
               this.ctx.drawImage(
                 tileSheet,
                 wallX,
@@ -182,14 +181,12 @@ class Map {
         rect1.y <= rect2.trueY + rect2.height && //top of player, bottom of block
         rect1.y + rect1.height >= rect2.trueY //top of block, bottom of player
       ) {
-        // debugger;
         window.addEventListener("keydown", (e) => {
           if (e.key === "e" && this.previousCollision === rect2) {
             if (rect2.type !== "enemy") {
               rect2.remove();
               this.pickupItem(rect2);
             }
-            // debugger;
           }
         });
         this.previousCollision = rect2;
@@ -206,11 +203,9 @@ class Map {
         if (!item.interacted) {
           item.interacted = true;
           let reward = temp.generateChestReward();
-          // debugger;
           this.game.playerInventory.addItem(reward, 1);
         }
       } else {
-        // debugger;
         if (!item.interacted) {
           item.interacted = true;
           if (item.type === "redPot")

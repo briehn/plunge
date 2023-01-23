@@ -18,19 +18,18 @@ class Item {
   generateChestReward() {
     let length = Object.keys(Item.ITEMS).length - 1;
     let rand = Math.floor(Math.random() * length);
-    // debugger;
     return Item.ITEMS[rand];
   }
 }
 
 Item.findById = (id) => {
-  let itemLength = Object.values(Item.ITEMS).length
+  let itemLength = Object.values(Item.ITEMS).length;
   for (let i = 0; i < itemLength; i++) {
     if (id === Item.ITEMS[i].id) {
       return Item.ITEMS[i];
     }
   }
-}
+};
 //TODO: Add actions/functions
 Item.ITEMS = {
   0: {
