@@ -148,8 +148,8 @@ class Map {
                 potionH,
                 x * tileSize,
                 y * tileSize,
-                tileSize,
-                tileSize
+                potionW,
+                potionH
               );
               break;
             case 2:
@@ -176,10 +176,10 @@ class Map {
     for (let i = 0; i < blocklist.length; i++) {
       let rect2 = blocklist[i];
       if (
-        rect1.x >= rect2.trueX - rect2.x / 2 && //right of player, left of block
-        rect1.x <= rect2.trueX + rect2.width && //right of block, left of player
+        rect1.x + rect1.width >= rect2.trueX - rect2.x + rect2.width && //right of player, left of block
+        rect1.x <= rect2.trueX + rect2.width - rect2.width / 2 && //right of block, left of player
         rect1.y <= rect2.trueY + rect2.height && //top of player, bottom of block
-        rect1.y + rect1.height >= rect2.trueY //top of block, bottom of player
+        rect1.y + rect1.height / 5 >= rect2.trueY - rect2.height / 2 //top of block, bottom of player
       ) {
         window.addEventListener("keydown", (e) => {
           if (e.key === "e" && this.previousCollision === rect2) {
